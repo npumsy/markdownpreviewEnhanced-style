@@ -1,0 +1,417 @@
+.markdown-preview {
+  // === 全局基础样式 ===
+  color: #000000;                // 纯黑色文字（覆盖浅灰色默认）
+  font-family: "Microsoft YaHei", "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  font-size: 14px;               // 全局默认字号（可被子元素覆盖�?  line-height: 1.6;
+  padding: 12px;
+
+  // === 段落与通用文本 ===
+  p, li, td, th, blockquote, span {
+    font-size: 14px;
+    color: #000000;
+  }
+ 
+  // === 标题 ===
+  h1 { font-size: 20px; margin-top: 24px; }
+  h2 { font-size: 18px; margin-top: 20px; }
+  h3 { font-size: 16px; margin-top: 16px; }
+  h4, h5, h6 { font-size: 14px; }
+ 
+  // === 表格 ===
+  table {
+    color: #000000;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+  }
+  th, td {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    
+  }
+ 
+  // === 代码相关 ===
+  code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: #d73a49;
+  }
+ 
+  pre {
+    line-height: 1.4;
+    background-color: #f5f5f5;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;          // 横向滚动（防止溢出）
+    white-space: pre-wrap;     // �?关键：允许长代码自动换行�?    word-wrap: break-word;
+  }
+ 
+  pre code {
+    background: none;
+    padding: 0;
+    color: #000000;
+  }
+ 
+  // === 引用�?===
+  blockquote {
+    border-left: 4px solid #ddd;
+    padding-left: 16px;
+    margin-left: 0;
+    color: #555;
+  }
+ 
+  // === 列表 ===
+  ul, ol {
+    padding-left: 24px;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+
+  // 限制所有 Markdown 图片的最大宽度（防止撑破页面）
+  img {
+    max-width: 100% !important;   // 不超过容器宽度
+    height: auto !important;      // 保持宽高比
+    display: block;               // 可选：让图片独占一行并居左（或配合 margin 居中）
+    margin: 12px auto;            // 可选：上下留空 + 居中
+  }
+}
+.markdown-preview.exam-layout  {
+  // === 试卷紧凑排版配置 ===
+  color: #000000;
+  // 字体：优先英�?Times New Roman，中文宋�?(SimSun/STSong) 适合打印
+  font-family: "Times New Roman", "SimSun", "STSong", "Songti SC", "Liberation Serif", serif;
+  font-size: 11pt;               // 试卷标准 11pt (等同于小�?五号字之�?
+  line-height: 1.4;              // 紧凑行距
+  padding: 0 5mm;                // 侧边留白缩小
+
+  // === 打印页面设置 ===
+  @media print {
+    font-size: 11pt;
+    background: #fff;
+  }
+
+  // === 段落与基础文本 ===
+  p, li, td, th, span {
+    font-size: 11pt;
+    margin: 3px 0;               // 极小的段落间�?    color: #000000;
+  }
+
+  // === 试卷标题 (H1) ===
+  h1 { 
+    font-family: "Microsoft YaHei";
+    font-size: 18pt; 
+    text-align: center;          // 标题居中
+    margin: 15px 0 10px 0; 
+    border-bottom: none; 
+    font-weight: bold;
+  }
+
+  // === 大题标题 (H2) ===
+  h2 { 
+    font-family: "Times New Roman", "Microsoft YaHei";
+    font-size: 13pt; 
+    margin: 10px 0 5px 0; 
+    padding-bottom: 2px;
+  }
+
+  // === 小题标题 (H3) ===
+  h3 { 
+    font-size: 11.5pt; 
+    margin: 6px 0 3px 0; 
+    font-weight: bold;
+  }
+
+  h4, h5, h6 { font-size: 11pt; margin: 4px 0; }
+
+  // === 表格 (试卷填表或选择�? ===
+  table {
+    font-size: 10.5pt;
+    margin: 8px 0;
+    border-collapse: collapse;
+    width: 100%;
+    
+    th, td {
+      padding: 3px 6px;
+      border: 0.5pt solid #000;  // 极细黑色边框
+      text-align: left;
+    }
+    th { background-color: #f9f9f9; }
+  }
+
+  // === 列表 (多用于选项) ===
+  ul, ol {
+    padding-left: 25px;
+    margin: 4px 0;
+  }
+  li {
+    margin-bottom: 2px;
+  }
+
+  // === 代码�?(试卷中的引用或代码题，适当缩小) ===
+  pre {
+    font-size: 10pt;
+    line-height: 1.2;
+    background-color: #fcfcfc;
+    border: 0.5pt dashed #ccc;
+    padding: 8px;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  code {
+    font-size: 10pt;
+    background: none;
+    color: #333;
+  }
+
+  // === 特殊标记：填空线 ===
+  // �?Markdown 中用 <u>空格</u> 实现
+  u {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 0 20px;
+  }
+
+  // === 引用�?(Reading 文本) ===
+  blockquote {
+    border-left: 3px solid #666;
+    padding: 2px 15px;
+    margin: 10px 0;
+    background-color: #fefefe;
+    font-style: italic;
+  }
+}
+.markdown-preview.letter {
+  // === 中文公文 (红头文件) 风格配置 ===
+  color: #000000;
+  font-family: "FangSong", "仿宋", "STFangsong", "SimSun", serif;
+  font-size: 16pt;
+  line-height: 1.6;
+  padding: 2.5cm 2.5cm;
+
+  @media print {
+    font-size: 16pt;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+  }
+
+  h1 { 
+    color: #ff0000;
+    font-family: "SimHei", "黑体", "Microsoft YaHei", sans-serif;
+    font-size: 28pt; 
+    text-align: center;
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 5mm;
+    margin-bottom: 15mm;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-family: "FangSong", "仿宋", serif;
+    font-size: 14pt;
+    text-align: center;
+    font-weight: normal;
+    margin-top: -10mm;
+    margin-bottom: 10mm;
+  }
+
+  h2 { 
+    font-family: "SimHei", "黑体", sans-serif; 
+    font-size: 20pt; 
+    text-align: center;
+    margin: 20px 0; 
+    font-weight: bold;
+    color: #000;
+  }
+
+  p {
+    text-indent: 2.1em;
+    margin: 0;
+    text-align: justify;
+  }
+
+  h3 {
+    font-family: "KaiTi", "楷体", "STKaiti", serif;
+    font-size: 16pt;
+    font-weight: bold;
+    text-indent: 0;
+    margin-top: 10px;
+    color: #000;
+  }
+
+  blockquote {
+    border: none;
+    font-family: "KaiTi", "楷体", serif;
+    color: #333;
+    padding: 0;
+    margin: 10px 0;
+    text-indent: 2em;
+  }
+
+  .footer-sig {
+    text-align: right;
+    margin-top: 30mm;
+    padding-right: 20mm;
+    line-height: 2;
+    font-family: "FangSong", "仿宋", serif;
+  }
+}
+
+.markdown-preview.black {
+  // === 纯黑配色模式 (Light Mode 专用提升对比度) ===
+  background-color: #ffffff !important;
+  color: #000000 !important;
+
+  // 强制全局所有常规文本为纯黑
+  body, p, li, td, th, span, div, blockquote {
+    color: #000000 !important;
+    font-size: 10pt;
+  }
+
+  // 标题
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    border-bottom-color: #000000 !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+  }
+
+  // 代码块：为了区分，使用特定的等宽字体和淡灰背景，但文字仍保持纯黑
+  code {
+    font-family: monospace, SimSun, STSong !important;
+    color: #000000 !important; 
+    background-color: #eeeeee !important; // 稍微加深背景以示区分
+    font-weight: 600; // 稍微加粗以便识别
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+
+  pre {
+    background-color: #f8f8f8 !important;
+    border: 1px solid #000000 !important;
+    padding: 10px;
+    border-radius: 6px;
+    white-space: pre-wrap !important;       // 自动换行
+    word-wrap: break-word !important;      // 长单词换行
+    overflow: visible !important;          // 允许跨页溢出显示
+    page-break-inside: auto !important;    // 允许代码块内部换页
+    
+    code {
+      background-color: transparent !important;
+      font-weight: normal; // 代码块内不需要全局加粗
+      padding: 0;
+      white-space: pre-wrap !important;
+    }
+
+    // 代码高亮覆盖：将所有语法高亮颜色统一为黑色（仅通过字形区分，如加粗/斜体）
+    .hljs-keyword, .hljs-selector-tag, .hljs-addition { color: #000 !important; font-weight: bold; }
+    .hljs-string, .hljs-meta .hljs-string { color: #000 !important; font-style: italic; }
+    .hljs-comment, .hljs-quote { color: #333 !important; font-style: italic; opacity: 0.7; }
+    .hljs-variable, .hljs-template-variable, .hljs-attribute, .hljs-tag, .hljs-name, .hljs-regexp, .hljs-link, .hljs-selector-id, .hljs-selector-class { color: #000 !important; }
+    .hljs-number, .hljs-symbol, .hljs-bullet, .hljs-built_in, .hljs-type, .hljs-params, .hljs-deletion { color: #000 !important; }
+  }
+
+  // 链接：改为下划线区分，而不是颜色
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  // 引用
+  blockquote {
+    border-left: 4px solid #000000 !important;
+    color: #000000 !important;
+    padding-left: 16px;
+  }
+
+  // 表格
+  table {
+    border: 1px solid #000000 !important;
+    word-break: break-all !important;
+    word-wrap: break-word !important;
+    table-layout: auto !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    th, td {
+      border: 1px solid #000000 !important;
+      word-break: break-all !important;
+      word-wrap: break-word !important;
+      white-space: normal !important;
+      overflow-wrap: break-word !important;
+
+      // 修复表格内部的代码换行
+      code {
+        white-space: pre-wrap !important;
+        word-break: break-all !important;
+      }
+    }
+    th {
+      background-color: #eeeeee !important;
+    }
+  }
+}
+
+.markdown-preview.paper {
+  color: #000000;
+  font-family: "Times New Roman", "SimSun", "STSong", "Songti SC", serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  padding: 2cm 2.5cm;
+
+  @media print {
+    font-size: 12pt;
+    background: #fff;
+  }
+
+  // === Image Centering ===
+  img {
+    display: block;
+    margin: 20px auto;
+    max-width: 80%;
+  }
+
+  // === Three-Line Table (Academic Style) ===
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    border-top: 2px solid #000;    // Top thick line
+    border-bottom: 2px solid #000; // Bottom thick line
+    border-left: none;
+    border-right: none;
+
+    th {
+      border-bottom: 1px solid #000; // Header thin line
+      font-weight: bold;
+      text-align: center;
+      padding: 8px;
+    }
+
+    td {
+      border: none;                  // No internal vertical lines
+      padding: 8px;
+      text-align: center;
+    }
+  }
+
+  h1, h2, h3 {
+    font-family: "SimHei", "Microsoft YaHei", sans-serif;
+    text-align: center;
+  }
+
+  p {
+    text-indent: 2em;
+    margin: 0.5em 0;
+    text-align: justify;
+  }
+}
