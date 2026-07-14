@@ -1,94 +1,10 @@
-.markdown-preview {
-  // === 全局基础样式 ===
-  color: #000000;                // 纯黑色文字（覆盖浅灰色默认）
-  font-family: "Microsoft YaHei", "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
-  font-size: 14px;               // 全局默认字号（可被子元素覆盖�?  line-height: 1.6;
-  padding: 12px;
 
-  // === 段落与通用文本 ===
-  p, li, td, th, blockquote, span {
-    font-size: 14px;
-    color: #000000;
-  }
- 
-  // === 标题 ===
-  h1 { font-size: 20px; margin-top: 24px; }
-  h2 { font-size: 18px; margin-top: 20px; }
-  h3 { font-size: 16px; margin-top: 16px; }
-  h4, h5, h6 { font-size: 14px; }
- 
-  // === 表格 ===
-  table {
-    color: #000000;
-    border-collapse: collapse;
-    width: 100%;
-    margin: 12px 0;
-  }
-  th, td {
-    padding: 6px 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-    vertical-align: top;
-  }
-  th {
-    background-color: #f5f5f5;
-    font-weight: bold;
-    
-  }
- 
-  // === 代码相关 ===
-  code {
-    background-color: #f5f5f5;
-    padding: 2px 4px;
-    border-radius: 3px;
-    color: #d73a49;
-  }
- 
-  pre {
-    line-height: 1.4;
-    background-color: #f5f5f5;
-    padding: 12px;
-    border-radius: 6px;
-    overflow-x: auto;          // 横向滚动（防止溢出）
-    white-space: pre-wrap;     // �?关键：允许长代码自动换行�?    word-wrap: break-word;
-  }
- 
-  pre code {
-    background: none;
-    padding: 0;
-    color: #000000;
-  }
- 
-  // === 引用�?===
-  blockquote {
-    border-left: 4px solid #ddd;
-    padding-left: 16px;
-    margin-left: 0;
-    color: #555;
-  }
- 
-  // === 列表 ===
-  ul, ol {
-    padding-left: 24px;
-  }
-  li {
-    margin-bottom: 4px;
-  }
-
-  // 限制所有 Markdown 图片的最大宽度（防止撑破页面）
-  img {
-    max-width: 100% !important;   // 不超过容器宽度
-    height: auto !important;      // 保持宽高比
-    display: block;               // 可选：让图片独占一行并居左（或配合 margin 居中）
-    margin: 12px auto;            // 可选：上下留空 + 居中
-  }
-}
 .markdown-preview.exam-layout  {
   // === 试卷紧凑排版配置 ===
   color: #000000;
-  // 字体：优先英�?Times New Roman，中文宋�?(SimSun/STSong) 适合打印
-  font-family: "Times New Roman", "SimSun", "STSong", "Songti SC", "Liberation Serif", serif;
-  font-size: 11pt;               // 试卷标准 11pt (等同于小�?五号字之�?
+  // 字体：针对 Prince 导出优化的无衬线字体链
+  font-family: "Arial", "Helvetica", "Microsoft YaHei", "微软雅黑", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 11pt;               // 试卷标准 11pt
   line-height: 1.4;              // 紧凑行距
   padding: 0 5mm;                // 侧边留白缩小
 
@@ -96,12 +12,18 @@
   @media print {
     font-size: 11pt;
     background: #fff;
+    
+    // 强制 Prince 字体链
+    *, body {
+      font-family: "Arial", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+    }
   }
 
   // === 段落与基础文本 ===
-  p, li, td, th, span {
+  p, li, td, th {
     font-size: 11pt;
-    margin: 3px 0;               // 极小的段落间�?    color: #000000;
+    margin: 3px 0;               
+    color: #000000;
   }
 
   // === 试卷标题 (H1) ===
@@ -116,7 +38,7 @@
 
   // === 大题标题 (H2) ===
   h2 { 
-    font-family: "Times New Roman", "Microsoft YaHei";
+    font-family: "Arial", "Microsoft YaHei", "微软雅黑", sans-serif;
     font-size: 13pt; 
     margin: 10px 0 5px 0; 
     padding-bottom: 2px;
@@ -275,7 +197,7 @@
   // 强制全局所有常规文本为纯黑
   body, p, li, td, th, span, div, blockquote {
     color: #000000 !important;
-    font-size: 10pt;
+    font-size: 12pt;
   }
 
   // 标题
@@ -362,15 +284,19 @@
 }
 
 .markdown-preview.paper {
-  color: #000000;
-  font-family: "Times New Roman", "SimSun", "STSong", "Songti SC", serif;
-  font-size: 12pt;
+  font-family: "Arial", "Helvetica", "Microsoft YaHei", "微软雅黑", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 11pt;
   line-height: 1.5;
   padding: 2cm 2.5cm;
 
   @media print {
-    font-size: 12pt;
+    font-size: 11pt;
     background: #fff;
+    
+    // 强制 Prince 字体链
+    *, body {
+      font-family: "Arial", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+    }
   }
 
   // === Image Centering ===
@@ -413,5 +339,160 @@
     text-indent: 2em;
     margin: 0.5em 0;
     text-align: justify;
+  }
+}
+.markdown-preview.landscape-a4 {
+  // === 横版 A4 排版配置 ===
+  color: #000000;
+  font-family: "Microsoft YaHei", "SimSun", "STSong", sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  padding: 1.5cm 1.5cm;
+  
+  // A4 横向尺寸约为 297mm x 210mm
+  max-width: 297mm;
+  margin: 0 auto;
+
+  @media print {
+    @page {
+      size: A4 landscape;
+      // margin: 1cm 1.5cm;
+      margin: 0cm 0.5cm;
+    }
+    font-size: 11pt;
+    background: #fff;
+  }
+
+  // === 表格自动换行与宽度控制 ===
+  table {
+    width: 100%;
+    table-layout: fixed;       // 强制列宽，配合换行
+    word-wrap: break-word;     
+    word-break: break-all;     // 确保长字符/链接换行
+    border-collapse: collapse;
+    margin: 12px 0;
+    
+    th, td {
+      padding: 8px;
+      border: 1px solid #000;
+      text-align: left;
+      vertical-align: top;
+      overflow-wrap: break-word;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+  }
+
+  h1, h2, h3 {
+    font-family: "SimHei", "Microsoft YaHei", sans-serif;
+    margin-top: 14px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0.8em 0;
+    text-align: justify;
+    text-indent: 2em;
+  }
+}
+
+.markdown-preview.a4-portrait {
+  // === A4 纵向标准排版 (Word 风格) ===
+  color: #000000;
+  // 字体：全面改用 Sans-serif (无衬线) 字体链，解决 Prince 乱码并提升清晰度
+  font-family: "Arial", "Helvetica", "Microsoft YaHei", "微软雅黑", "WenQuanYi Micro Hei", "Noto Sans CJK SC", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  padding: 1.5cm 2.0cm; // 缩小页边距
+  
+  // 预览页面模拟 A4
+  width: 210mm;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 1.5cm 2.0cm; // 物理边距
+    }
+    
+    // 强制 Prince 使用无衬线字体以确保中文不乱码
+    // 注意：排除 mathjax 和 katex 相关类，否则公式会乱码
+    *:not([class^="mjx-"]):not([class^="katex"]):not(.MathJax), 
+    html, body, div:not(.MathJax_Display), p, span:not([class^="mjx-"]):not([class^="katex"]), 
+    h1, h2, h3, h4, h5, h6, li, td, th {
+      font-family: "Arial", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+    }
+
+    width: auto;
+    margin: 0;
+    padding: 0; 
+    box-shadow: none;
+    background: #fff;
+  }
+
+  // 标题：居中、微软雅黑
+  h1, h2, h3 { 
+    font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", sans-serif;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+
+  h1 { font-size: 18pt; } // 一级标题 (小一)
+  h2 { font-size: 14pt; border-bottom: none; } // 二级标题 (三号)
+  h3 { font-size: 12pt; text-align: left; } // 三级标题 (小四，居左)
+
+  p {
+    // text-indent: 2em;            // 首行缩进两个字符
+    margin: 0.5em 0;
+    text-align: left;         // 两端对齐
+  }
+
+  // 图片居中
+  img {
+    display: block;
+    margin: 20px auto;
+    max-width: 80%;
+  }
+
+  // 学术三线表
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    border-top: 1.5pt solid #000;    // 顶线（粗）
+    border-bottom: 1.5pt solid #000; // 底线（粗）
+    border-left: none;
+    border-right: none;
+
+    th {
+      border-bottom: 0.75pt solid #000; // 栏目线（淡）
+      font-weight: bold;
+      text-align: center;
+      padding: 8px;
+    }
+
+    td {
+      border: none;
+      padding: 8px;
+      text-align: center;
+    }
+  }
+
+  // 引用
+  blockquote {
+    border-left: 3px solid #666;
+    padding: 2px 15px;
+    margin: 15px 0;
+    color: #444;
+    font-style: italic;
+    background-color: #f9f9f9;
   }
 }
