@@ -70,7 +70,7 @@
 
   // === 列表 (多用于选项) ===
   ul, ol {
-    padding-left: 25px;
+    padding-left: 1.2em;
     margin: 4px 0;
   }
   li {
@@ -420,12 +420,24 @@
       margin: 1.5cm 2.0cm; // 物理边距
     }
     
-    // 强制 Prince 使用无衬线字体以确保中文不乱码
-    // 注意：排除 mathjax 和 katex 相关类，否则公式会乱码
-    *:not([class^="mjx-"]):not([class^="katex"]):not(.MathJax), 
-    html, body, div:not(.MathJax_Display), p, span:not([class^="mjx-"]):not([class^="katex"]), 
-    h1, h2, h3, h4, h5, h6, li, td, th {
+    // 基础文本字体设置（不使用 * 号，避免破坏公式内部结构）
+    html, body, p, li, td, th, blockquote, div:not(.MathJax):not(.MathJax_Display):not([class^="mjx-"]):not([class^="katex"]) {
       font-family: "Arial", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+    }
+
+    // 代码块字体设置
+    code, pre, pre code {
+      font-family: "Courier New", "Consolas", "Liberation Mono", "Microsoft YaHei", monospace !important;
+    }
+
+    // 标题字体
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", sans-serif !important;
+    }
+
+    // 公式字体保护：彻底禁止对 MathJax 和 KaTeX 内部元素强制修改字体
+    .MathJax, .MathJax_Display, .mjx-container, .katex, .katex-display, [class^="mjx-"], [class^="katex"] {
+      font-family: inherit !important; // 让它使用引擎自带的字体定义
     }
 
     width: auto;
@@ -494,5 +506,14 @@
     color: #444;
     font-style: italic;
     background-color: #f9f9f9;
+  }
+
+  // 列表：减小缩进
+  ul, ol {
+    padding-left: 1.2em; // 原默认约 2em-2.5em，这里改为 1.2em
+    margin: 0.5em 0;
+  }
+  li {
+    margin-bottom: 0.3em;
   }
 }
