@@ -13,8 +13,8 @@
     font-size: 11pt;
     background: #fff;
     
-    // 强制 Prince 字体链
-    *, body {
+    // 强制 Prince 字体链（仅常规文本，避免覆盖公式字体）
+    html, body, p, li, td, th, blockquote, div:not(.MathJax):not(.MathJax_Display):not([class^="mjx-"]):not([class^="katex"]) {
       font-family: "Arial", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
     }
   }
@@ -293,8 +293,8 @@
     font-size: 11pt;
     background: #fff;
     
-    // 强制 Prince 字体链
-    *, body {
+    // 强制 Prince 字体链（仅常规文本，避免覆盖公式字体）
+    html, body, p, li, td, th, blockquote, div:not(.MathJax):not(.MathJax_Display):not([class^="mjx-"]):not([class^="katex"]) {
       font-family: "Arial", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
     }
   }
@@ -417,7 +417,7 @@
   @media print {
     @page {
       size: A4 portrait;
-      margin: 1.5cm 2.0cm; // 物理边距
+      margin: 0.5cm 0.5cm; // 物理边距
     }
     
     // 基础文本字体设置（不使用 * 号，避免破坏公式内部结构）
@@ -435,10 +435,7 @@
       font-family: "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", sans-serif !important;
     }
 
-    // 公式字体保护：彻底禁止对 MathJax 和 KaTeX 内部元素强制修改字体
-    .MathJax, .MathJax_Display, .mjx-container, .katex, .katex-display, [class^="mjx-"], [class^="katex"] {
-      font-family: inherit !important; // 让它使用引擎自带的字体定义
-    }
+    // 不对 MathJax/KaTeX 及其内部类做字体重写，保留公式引擎默认字形
 
     width: auto;
     margin: 0;
@@ -517,3 +514,18 @@
     margin-bottom: 0.3em;
   }
 }
+
+// === 修复 Prince PDF 导出时公式中中文乱码、且英文/数字不被重置的字体降级解决方案 ===
+.katex, .MathJax, .mjx-chtml, .mjx-svg {
+  // 对 KaTeX 的 CJK 字符专用降级容器直接应用中文字体（这些容器中不含英文，非常安全）
+  .cjk_fallback {
+    font-family: "SimSun", "Noto Serif CJK SC", "Microsoft YaHei", serif !important;
+  }
+
+  // 对公式中 text (即 \text{...}) 容器，通过 CSS font-family 机制：
+  // 先写标准 LaTeX 衬线英文字体，最后写中文字体，实现“英文用英文字体，中文用中文字体”的完美降级
+  .mtext, mtext, .mjx-mtext {
+    font-family: "KaTeX_Main", "MathJax_Main", "Times New Roman", "SimSun", "Noto Serif CJK SC", "Microsoft YaHei", serif !important;
+  }
+}
+
