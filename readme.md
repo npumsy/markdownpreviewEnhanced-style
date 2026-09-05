@@ -100,6 +100,9 @@ sudo cp /mnt/c/Windows/Fonts/times.ttf /usr/local/share/fonts/windows/
 sudo cp /mnt/c/Windows/Fonts/timesbd.ttf /usr/local/share/fonts/windows/
 sudo cp /mnt/c/Windows/Fonts/timesbi.ttf /usr/local/share/fonts/windows/
 sudo cp /mnt/c/Windows/Fonts/timesi.ttf /usr/local/share/fonts/windows/
+
+# emoji 和符号字符 方便导出pdf
+sudo apt install fonts-noto-color-emoji fonts-symbola
 ```
 
 ### 步骤 3：刷新字体缓存 (关键)
